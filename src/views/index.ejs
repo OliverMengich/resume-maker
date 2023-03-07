@@ -7,8 +7,8 @@
     <header class="header">
         <img src="/images/plate.png" alt="your_profile" srcset=" ">
         <div class="user-desc">
-            <h3 class="title">John Doe</h3>
-            <h5 >SOFTWARE DEVELOPER</h5>
+            <h3 class="title"><%= info.description.name %></h3>
+            <h5 ><%= info.description.role.toUpperCase() %></h5>
         </div>
     </header>
     <div style="display: flex; padding: 1rem;">
@@ -18,36 +18,35 @@
             <div class="skills">
                 <h3 class="title">Skills</h3>
                 <ul>
-                    <li>NodeJS</li>
-                    <li>React</li>
-                    <li>NextJS</li>
-                    <li>Database</li>
-                    <li>Git and Github</li>
+                    <% for(let i=0;i < info.skills.length; i++) { %>
+                        <li><%=info.skills[i] %></li>
+                    <% } %>
                 </ul>
             </div>
             <h3 class="title">Personal Information</h3>
             <div class="personal-info">
                 <ul>
-                    <li>Location: </li>
-                    <li>Contact: </li>
-                    <li>Github: </li>
-                    <li>Website: </li>
-                    <li>LinkedIn: </li>
-                    <li>Twitter: </li>
+                    <li>Location: <%= info.contact.location %> </li>
+                    <li>Contact: <%= info.contact.phone %> </li>
+                    <li>Github: <%= info.contact.github %></li>
+                    <li>Email: <%= info.contact.github %> </li>
+                    <li>LinkedIn: <%= info.contact.linkedin %> </li>
+                    <li>Twitter: <%= info.contact.twitter %> </li>
                 </ul>
             </div>
         </aside>
         <aside class="experience-education">
             <div class="experience">
                 <h4>WORK EXPERIENCE</h4>
-                <div class="description">
-                    <h4 class="title" style="display: inline-block;">Frontend Developer </h4>
-                    <span style="float: right;">05/2021-09-2021</span>
-                    <h5>Digital Genius</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit cum explicabo iure magni doloribus esse! Aspernatur corrupti necessitatibus praesentium iste?</p>
-                </div>
+                <% for(let i = 0; i< info.experience.length; i++) { %>
+                    <div class="description">
+                        <h4 class="title" style="display: inline-block;"> <%=info.experience[i].Title %> </h4>
+                        <span style="float: right;"><%=info.experience[i].start_date %> - <%=info.experience[i].end_date %></span>
+                        <h5><%=info.experience[i].name %></h5>
+                        <p> <%=info.experience[i].description %> </p>
+                    </div>
+                <% } %>
             </div>
-            <button>Add</button>
             <div class="education">
                 <h4>EDUCATION</h4>
                 <div class="description">
