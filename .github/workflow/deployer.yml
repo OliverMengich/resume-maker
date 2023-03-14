@@ -1,0 +1,41 @@
+name: Deploy To Azure App service
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@main
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+      - name: Build Application
+        run: |
+          pnpm install
+          pnpm build
+      - name: Upload Artifacts
+        uses: actions/upload-artifacts@v3
+        with:
+          name: dist-files
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifacts
+        uses: action/download-artifacts@v3
+        with:
+          name: dist-files
+      - name: Output Contents
+        run: ls
+      - name: Azure Web App Deploy
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'my-app-name'
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: '.'
+          slot-name: 'my-slot-name'
+          slot-destination: 'production'
+          app-settings: 'WEBSITE_RUN_FROM_PACKAGE=1'
+          # Set this to true if you want to deploy to a staging slot and swap it with the production slot
+          # This will ensure that the production slot is always up and running
+          swap-with-production: true
