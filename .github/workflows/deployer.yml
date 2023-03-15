@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifacts
-        uses: action/download-artifacts@v3
+        uses: actions/download-artifact@v3
         with:
           name: dist-files
       - name: Output Contents
@@ -33,7 +33,7 @@ jobs:
       - name: Azure Web App Deploy
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'my-app-name'
+          app-name: 'resume_maker'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: '.'
           slot-name: 'my-slot-name'
