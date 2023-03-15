@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon",
-    "build": "tsc && cp -r src/public dist/public && cp -r src/views dist/views"
+    "build": "tsc && cp -r src/public dist/public && cp -r src/views dist/views",
+    "start": "node dist"
   },
   "nodemonConfig": {
     "watch": [

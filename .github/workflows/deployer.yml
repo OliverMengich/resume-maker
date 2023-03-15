@@ -29,16 +29,14 @@ jobs:
         with:
           name: dist-files
       - name: Output Contents
-        run: ls
-      - name: Azure Web App Deploy
-        uses: azure/webapps-deploy@v2
+        run: |
+          ls
+          pwd
+      - name: Deploy to Render
+        uses: bounceapp/render-action@0.2.0
         with:
-          app-name: 'resume_maker'
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: '.'
-          slot-name: 'my-slot-name'
-          slot-destination: 'production'
-          app-settings: 'WEBSITE_RUN_FROM_PACKAGE=1'
-          # Set this to true if you want to deploy to a staging slot and swap it with the production slot
-          # This will ensure that the production slot is always up and running
-          swap-with-production: true
+          email: ${{ secrets.RENDER_EMAIL }}
+          password: ${{ secrets.RENDER_PASSWORD }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          service-id: ${{ secrets.RENDER_SERVICE_ID }}
+        
