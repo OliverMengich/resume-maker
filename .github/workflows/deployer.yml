@@ -1,5 +1,5 @@
 name: Deploy To Azure App service
-on: workflow_dispatch
+on: push
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -8,6 +8,9 @@ jobs:
         uses: actions/checkout@v3
       - name: Install pnpm
         uses: pnpm/action-setup@v2
+        with:
+          version: 7
+          run_install: false
       - name: Build Application
         run: |
           pnpm install
