@@ -1,9 +1,15 @@
 <section>
-    <h2>This is a free tools that aims to aid in developing of your own resume</h2>
+    <h2>This is a free tool that aims to aid in developing of your own resume</h2>
     <h4></h4>
     <button class="btn">Create</button>
+    <button id="print-btn" class="btn">Print</button>
 </section>
-<section class="resume-div">
+<script type="module" src="/scripts/script.js">
+    function getPrintPDF(){
+        console.log('I was clicked');
+    }
+</script>
+<section class="resume-div" id="resume-div">
     <header class="header">
         <img src="/images/plate.png" alt="your_profile" srcset=" ">
         <div class="user-desc">

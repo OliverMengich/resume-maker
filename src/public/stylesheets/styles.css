@@ -13,9 +13,11 @@ main{
     display: flex;
     justify-content: space-between;
     padding: .2rem 5rem;
+    flex-wrap: wrap;
 }
 section{
     width: 50%;
+    min-width: 400px;
 }
 p{
     font-size: 12px;
