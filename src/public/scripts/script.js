@@ -14,14 +14,15 @@ btnPrint.addEventListener('click',async ()=>{
             domElement: await domElement
         }
     })
-    console.log(await data.json());
-    // html2canvas(domElement).then(function (canvas) {
-    //     var imgData = canvas.toDataURL('image/png');
-    //     var doc = new jsPDF('p', 'mm', 'a4');
-    //     // doc.addImage(imgData, 'PNG', 10, 10);
-    //     doc.addImage(imgData, 'PNG', 10, 10, 180, 180);
-    //     doc.save('sample-file.pdf');
-    // });
+    const blob = await data.blob();
+    const url = await URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'file.pdf'; // Replace with the name you want to give to the downloaded file
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
 })
 function getPrintPDF() {
     console.log("getPrintPDF");
